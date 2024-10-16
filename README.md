@@ -24,11 +24,27 @@ cat <<EOF | kubectl apply -f -
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: dkp-cd-overrides
+  name: dkp-cd-kommander-overrides
   namespace: dkp-cd-overrides
 spec:
   interval: 10m0s
   path: "./workspaces/kommander/application-overrides"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: dkp-cd-overrides
+    namespace: dkp-cd-overrides
+EOF
+
+cat <<EOF | kubectl apply -f -
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: dkp-cd-test-overrides
+  namespace: dkp-cd-overrides
+spec:
+  interval: 10m0s
+  path: "./workspaces/test/application-overrides"
   prune: true
   sourceRef:
     kind: GitRepository
