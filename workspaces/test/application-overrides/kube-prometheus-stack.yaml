@@ -1,12 +1,12 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: kube-prometheus-stack-kommander-overrides
+  name: kube-prometheus-stack-test-overrides
   namespace: dkp-cd-overrides
 spec:
   prune: false
   interval: 10m0s
-  path: "./workspaces/kommander/application-overrides/kube-prometheus-stack"
+  path: "./workspaces/test/application-overrides/kube-prometheus-stack"
   sourceRef:
     kind: GitRepository
     name: dkp-cd-overrides
